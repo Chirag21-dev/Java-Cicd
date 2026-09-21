@@ -28,5 +28,22 @@ pipeline {
                 '''
             }
         }
+        stage('Clean') {
+            steps {
+                sh 'mvn clean'
+            }
+        }
+
+        stage('Compile') {
+            steps {
+                sh 'mvn compile'
+            }
+        }
+
+        stage('Unit Test') {
+            steps {
+                sh 'mvn test'
+            }
+        }
 }
 }
