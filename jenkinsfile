@@ -1,0 +1,30 @@
+pipeline {
+
+    agent any
+
+    tools {
+        jdk 'JDK-17'
+        maven 'Maven-3.9'
+    }
+
+    environment {
+        APP_NAME = 'webapp'
+        MAVEN_OPTS = '-Dmaven.repo.local=$WORKSPACE/.m2/repository'
+    }
+
+    stages {
+
+        stage('Checkout') {
+            steps {
+                git branch: 'main', url: 'https://github.com/Chirag21-dev/Java-Cicd'
+            }
+        }
+
+        stage('Verify Environment') {
+            steps {
+                sh '''
+                    java -version
+                    mvn -version
+                '''
+            }
+        }
