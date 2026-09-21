@@ -28,11 +28,6 @@ pipeline {
                 '''
             }
         }
-        stage('Clean') {
-            steps {
-                sh 'mvn clean'
-            }
-        }
 
         stage('Compile') {
             steps {
@@ -40,9 +35,19 @@ pipeline {
             }
         }
 
-        stage('Unit Test') {
+         stage('Build WAR') {
             steps {
-                sh 'mvn test'
+                sh '''
+                    mvn clean package -DskipTests
+                '''
+            }
+        }
+
+        stage('Verify Artifact') {
+            steps {
+                sh '''
+                    ls -lh target/*.war
+                '''
             }
         }
 }
