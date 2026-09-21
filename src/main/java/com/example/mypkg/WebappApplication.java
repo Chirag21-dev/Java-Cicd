@@ -1,14 +1,13 @@
 package com.example.mypkg;
 
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-@Controller
-public class HomeController {
-	
-	@GetMapping(value = "/DockerProducts")
-	   public String index() {
-	      return "Products";
+@SpringBootApplication
+public class WebappApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(WebappApplication.class, args);
 	}
 
 }
