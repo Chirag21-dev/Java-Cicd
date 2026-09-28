@@ -100,7 +100,7 @@ stage('Docker Build') {
 }
 
  stage('Docker Push') {
-    steps {
+    /*steps {
         withCredentials([
             usernameColonPassword(
                 credentialsId: 'Dockerhub_cred',
@@ -121,7 +121,11 @@ stage('Docker Build') {
                 docker logout
             '''
         }
-    }
+    }*/
+   withDockerRegistry(credentialsId: 'Dockerhub_cred', url: 'https://index.docker.io/v1/') {
+    docker push chiragks1/webapp:${BUILD_NUMBER}
+    docker push chiragks1/webapp:latest
+}
 }
 }
 }
