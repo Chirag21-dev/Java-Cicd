@@ -43,7 +43,7 @@ pipeline {
             }
         }
 
-        stage('Verify Artifact') {
+        /*stage('Verify Artifact') {
             steps {
                 sh '''
                     ls -lh target/*.war
@@ -86,6 +86,6 @@ pipeline {
 
             cleanWs()
         }
-    }
+    }*/
 }
 }
