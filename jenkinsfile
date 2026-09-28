@@ -108,8 +108,11 @@ stage('Docker Build') {
             )
         ]) {
             sh '''
-                echo "$Dockerhub_cred" | docker login \
-                    --username "$(echo "$Dockerhub_cred" | cut -d: -f1)" \
+                DOCKER_USERNAME="${DOCKER_AUTH%%:*}"
+                DOCKER_PASSWORD="${DOCKER_AUTH#*:}"
+
+                echo "$DOCKER_PASSWORD" | docker login \
+                    --username "$DOCKER_USERNAME" \
                     --password-stdin
 
                 docker push chiragks1/webapp:${BUILD_NUMBER}
