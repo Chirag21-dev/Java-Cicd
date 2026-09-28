@@ -124,7 +124,7 @@ stage('Docker Build') {
     }
   
 }*/
-Stage('docker push'){
+stage('docker push'){
 steps{
  withDockerRegistry(credentialsId: 'Dockerhub_cred', url: 'https://index.docker.io/v1/') {
 sh '''
