@@ -87,5 +87,38 @@ pipeline {
             cleanWs()
         }
     }*/
+
+stage('Docker Build') {
+    steps {
+        sh '''
+            docker build \
+                -t chiragks1/webapp:${BUILD_NUMBER} \
+                -t chiragks1/webapp:latest \
+                .
+        '''
+    }
+}
+
+ stage('Docker Push') {
+    steps {
+        withCredentials([
+            usernameColonPassword(
+                credentialsId: 'Dockerhub_cred',
+                variable: 'Dockerhub_cred'
+            )
+        ]) {
+            sh '''
+                echo "$Dockerhub_cred" | docker login \
+                    --username "$(echo "$Dockerhub_cred" | cut -d: -f1)" \
+                    --password-stdin
+
+                docker push chiragks1/webapp:${BUILD_NUMBER}
+                docker push chiragks1/webapp:latest
+
+                docker logout
+            '''
+        }
+    }
+}
 }
 }
