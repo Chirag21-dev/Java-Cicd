@@ -127,8 +127,10 @@ stage('Docker Build') {
 Stage('docker push'){
 steps{
  withDockerRegistry(credentialsId: 'Dockerhub_cred', url: 'https://index.docker.io/v1/') {
+sh '''
     docker push chiragks1/webapp:${BUILD_NUMBER}
     docker push chiragks1/webapp:latest
+'''
 }
 }
 }
