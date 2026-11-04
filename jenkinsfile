@@ -136,7 +136,8 @@ stage('Docker Run') {
                 chiragks1/webapp:${BUILD_NUMBER}
         '''
     }
-}stage('OWASP ZAP Scan') {
+ }
+stage('OWASP ZAP Scan') {
     steps {
         sh '''
             mkdir -p zap-reports
