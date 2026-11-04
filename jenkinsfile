@@ -50,7 +50,7 @@ pipeline {
                 '''
             }
         }
-        stage('Upload WAR to Nexus') {
+        /*stage('Upload WAR to Nexus') {
             steps {
 
 configFileProvider([configFile(fileId: '21bca086-ea7e-4163-b5ba-0197a747a2d4', variable: 'mavensettings')]) {
@@ -61,7 +61,7 @@ configFileProvider([configFile(fileId: '21bca086-ea7e-4163-b5ba-0197a747a2d4', v
                 }
 } 
         }
-   /*post {
+   post {
 
         success {
             echo 'WAR successfully built and uploaded to Nexus.'
@@ -115,7 +115,7 @@ stage('Docker Build') {
         }
     }
   
-}*/
+}
 stage('docker push'){
 steps{
  withDockerRegistry(credentialsId: 'Dockerhub_cred', url: 'https://index.docker.io/v1/') {
@@ -125,6 +125,18 @@ sh '''
 '''
 }
 }
+}*/
+stage('Docker Run') {
+    steps {
+        sh '''
+            docker rm -f webapp || true
+
+            docker run -d \
+                --name webapp \
+                -p 8080:8080 \
+                chiragks1/webapp:${BUILD_NUMBER}
+        '''
+    }
 }
 }
 }
