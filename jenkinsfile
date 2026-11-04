@@ -129,7 +129,7 @@ sh '''
 stage('Docker Run') {
     steps {
         sh '''
-            docker rm -f webapp || true
+            /*docker rm -f webapp || true*/
 
             docker run -d \
                 --name webapp \
