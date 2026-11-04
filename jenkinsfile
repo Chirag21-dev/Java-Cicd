@@ -55,7 +55,7 @@ pipeline {
 
 configFileProvider([configFile(fileId: '21bca086-ea7e-4163-b5ba-0197a747a2d4', variable: 'mavensettings')]) {
     sh '''
-                        mvn -s $mavensettings deploy -DskipTests \
+                        mvn -s $mavensettings deploy -DskipTests 
                             
                     '''
                 }
