@@ -17,6 +17,13 @@
 	<properties>
 		<java.version>17</java.version>
 	</properties>
+    <repositories>
+        <repository>
+            <id>maven-releases</id>
+            <name>maven-releases</name>
+            <url>http://98.88.38.35:8081/repository/maven-releases/</url>
+        </repository>
+    </repositories>
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -51,12 +58,12 @@
 
     <repository>
         <id>nexus-releases</id>
-        <url>http://YOUR-NEXUS-IP:8081/repository/maven-releases/</url>
+        <url>http://98.88.38.35:8081/repository/maven-releases/</url>
     </repository>
 
     <snapshotRepository>
         <id>nexus-snapshots</id>
-        <url>http://YOUR-NEXUS-IP:8081/repository/maven-snapshots/</url>
+        <urlhttp://98.88.38.35:8081/repository/maven-snapshots/</url>
     </snapshotRepository>
 
 </distributionManagement>
