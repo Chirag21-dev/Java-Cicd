@@ -132,7 +132,7 @@ stage('Docker Run') {
             docker rm -f webapp || true
             docker run -d \
                 --name webapp \
-                -p 8081:8081 \
+                -p 8081:8080 \
                 chiragks1/webapp:${BUILD_NUMBER}
         '''
     }
