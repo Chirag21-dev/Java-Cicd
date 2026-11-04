@@ -137,6 +137,25 @@ stage('Docker Run') {
         '''
     }
  }
+stage('Application Health Check') {
+    steps {
+        sh '''
+            for i in {1..12}; do
+                if curl -fsS http://localhost:8081/ > /dev/null; then
+                    echo "Application is running"
+                    exit 0
+                fi
+
+                echo "Waiting for application..."
+                sleep 5
+            done
+
+            echo "Application failed to start"
+            docker logs webapp
+            exit 1
+        '''
+    }
+}
 stage('OWASP ZAP Scan') {
     steps {
         sh '''
