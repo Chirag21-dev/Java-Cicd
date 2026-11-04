@@ -43,7 +43,7 @@ pipeline {
             }
         }
 
-        /*stage('Verify Artifact') {
+        stage('Verify Artifact') {
             steps {
                 sh '''
                     ls -lh target/*.war
@@ -69,7 +69,7 @@ pipeline {
                 }
             }
         }
-   post {
+   /*post {
 
         success {
             echo 'WAR successfully built and uploaded to Nexus.'
