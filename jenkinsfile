@@ -53,21 +53,13 @@ pipeline {
         stage('Upload WAR to Nexus') {
             steps {
 
-                withCredentials([
-                    usernamePassword(
-                        credentialsId: 'nexus-credentials',
-                        usernameVariable: 'NEXUS_USERNAME',
-                        passwordVariable: 'NEXUS_PASSWORD'
-                    )
-                ]) {
-
-                    sh '''
-                        mvn deploy -DskipTests \
-                            -Dnexus.username="$NEXUS_USERNAME" \
-                            -Dnexus.password="$NEXUS_PASSWORD"
+configFileProvider([configFile(fileId: '21bca086-ea7e-4163-b5ba-0197a747a2d4', variable: 'mavensettings')]) {
+    sh '''
+                        mvn -s $mavensettings deploy -DskipTests \
+                            
                     '''
                 }
-            }
+} 
         }
    /*post {
 
